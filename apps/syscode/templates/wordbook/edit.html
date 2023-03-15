@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{%block title%}{{title}}{%endblock%}
+{%block content%}
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-6">
+            {{form.code.label_tag}}
+            {{form.code}}{{field.code.errors}}
+        </div>
+        <div class="col-6">
+            {{form.name.label_tag}}
+            {{form.name}}{{field.name.errors}}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col text-end">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i>&nbsp;保存</button>&nbsp;&nbsp;
+            <a class="btn btn-outline-secondary" href="{%url 'syscode:wordbook_index'%}">返回</a>
+        </div>
+    </div>
+</form>
+{%endblock%}

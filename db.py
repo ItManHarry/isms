@@ -5,12 +5,12 @@ from django.utils import timezone
 class BaseModel(models.Model):
     class Meta:
         abstract = True
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)   # ID
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)     # ID
     active = models.BooleanField(default=True)                                      # 是否可用(默认可用)
     created_by = models.CharField(max_length=32, null=True)                         # 创建人
-    created_on = models.DateTimeField(auto_now=True)                                # 创建时间(UTC时间)
+    created_on = models.DateTimeField(default=timezone.now, editable=False)         # 创建时间(UTC时间)
     updated_by = models.CharField(max_length=32, null=True)                         # 更新人
-    updated_on = models.DateTimeField(default=timezone.now)                             # 更新时间(UTC时间)
+    updated_on = models.DateTimeField(default=timezone.now)                         # 更新时间(UTC时间)
 
     def get_created_on(self, off_set=None):
         return self.utc_to_locale(self.created_onm, off_set)

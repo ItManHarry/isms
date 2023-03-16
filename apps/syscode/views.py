@@ -48,7 +48,9 @@ def wordenum_edit(request, book_id, enum_id):
     if request.method == 'POST':
         form = WordEnumForm(request.POST, instance=enum)
         if form.is_valid():
-            form.save()
+            enum = form.save(commit=False)
+            enum.updated_on = timezone.now()
+            enum.save()
             return redirect(reverse('syscode:wordenum_edit', args=(book_id, enum_id, )))
     else:
         form = WordEnumForm(instance=enum)

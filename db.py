@@ -13,7 +13,7 @@ class BaseModel(models.Model):
     updated_on = models.DateTimeField(default=timezone.now)                         # 更新时间(UTC时间)
 
     def get_created_on(self, off_set=None):
-        return self.utc_to_locale(self.created_onm, off_set)
+        return self.utc_to_locale(self.created_on, off_set)
 
     def get_updated_on(self, off_set=None):
         return self.utc_to_locale(self.updated_on, off_set)

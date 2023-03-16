@@ -39,7 +39,7 @@ def wordenum_add(request, book_id):
             return redirect(reverse('syscode:wordenum_add', args=(book_id, )))
     else:
         form = WordEnumForm()
-    return render(request, 'wordenum/edit.html', context=dict(enums=enums, form=form))
+    return render(request, 'wordbook/enums.html', context=dict(enums=enums, form=form, wordbook=wordbook))
 
 def wordenum_edit(request, book_id, enum_id):
     wordbook = WordBook.objects.get(pk=book_id)
@@ -52,4 +52,4 @@ def wordenum_edit(request, book_id, enum_id):
             return redirect(reverse('syscode:wordenum_edit', args=(book_id, enum_id, )))
     else:
         form = WordEnumForm(instance=enum)
-    return render(request, 'wordenum/edit.html', context=dict(enums=enums, form=form, book_id=book_id))
+    return render(request, 'wordbook/enums.html', context=dict(enums=enums, form=form, wordbook=wordbook))

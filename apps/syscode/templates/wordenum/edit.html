@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{%block title%}枚举维护{%endblock%}
+{%block content%}
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-6">
+            {{form.code.label_tag}}
+            {{form.code}}{{field.code.errors}}
+        </div>
+        <div class="col-6">
+            {{form.name.label_tag}}
+            {{form.name}}{{field.name.errors}}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col text-end">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i>&nbsp;保存</button>&nbsp;&nbsp;
+            <a class="btn btn-outline-secondary" href="{%url 'syscode:wordbook_index'%}">返回</a>
+        </div>
+    </div>
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th width="45%">代码</th>
+            <th width="45%">名称</th>
+            <th width="10%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {%if enums%}
+    {%for enum in enums%}
+        <tr>
+            <td>{{enum.code}}</td>
+            <td>{{enum.name}}</td>
+            <td>
+                <a href="{%url 'syscode:wordenum_edit' book_id=enum.word_book.id enum_id=enum.id%}" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square"></i>&nbsp;编辑</a>
+            </td>
+        </tr>
+    {%endfor%}
+    {%else%}
+    <tr>
+        <td colspan="3" class="text-info text-center">没有数据！</td>
+    </tr>
+    {%endif%}
+    </tbody>
+</table>
+{%endblock%}

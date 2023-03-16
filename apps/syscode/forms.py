@@ -10,6 +10,18 @@ class WordBookForm(ModelForm):
             'name': '字典名称',
         }
         widgets = {
-            'code': forms.TextInput(attrs={'class': 'form-control', 'disabled': True, 'placeholder': '系统自动生成!'}),
+            'code': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+class WordEnumForm(ModelForm):
+    class Meta:
+        model = WordEnum
+        fields = ['name', 'code']
+        labels = {
+            'code': '枚举代码',
+            'name': '枚举名称',
+        }
+        widgets = {
+            'code': forms.TextInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
         }

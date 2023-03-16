@@ -22,7 +22,7 @@
             <td>{{book.name}}</td>
             <td>
                 <a href="{%url 'syscode:wordbook_edit' book.id%}" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square"></i>&nbsp;编辑</a>&nbsp;&nbsp;
-                <a href="{%url 'syscode:wordbook_edit' book.id%}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-list-ul"></i>&nbsp;枚举</a>
+                <a href="{%url 'syscode:wordenum_add' book.id%}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-list-ul"></i>&nbsp;枚举</a>
             </td>
         </tr>
     {%endfor%}

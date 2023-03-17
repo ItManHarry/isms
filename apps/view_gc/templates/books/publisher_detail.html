@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+{%block title%}出版社{%endblock%}
+{%block content%}
+<h2>出版社</h2>
+<ul>
+    {%for book in book_list%}
+        <li>{{book.name}}</li>
+    {%endfor%}
+</ul>
+{%endblock%}

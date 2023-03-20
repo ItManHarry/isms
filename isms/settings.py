@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'syscode.apps.SyscodeConfig',
     'view_gc.apps.ViewGcConfig',
+    'view_fcv.apps.ViewFcvConfig',
 ]
 
 MIDDLEWARE = [

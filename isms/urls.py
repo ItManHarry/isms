@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('syscode/', include('syscode.urls')),
     path('view_gc/', include('view_gc.urls')),
+    path('view_fcv/', include('view_fcv.urls')),
 ]

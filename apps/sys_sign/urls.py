@@ -1,6 +1,7 @@
 from django.urls import path
-from . import  views
+from . import views
 app_name = 'sys_sign'
 urlpatterns = [
-    path('login/', views.login, name='login'),
+    path('login/', views.do_login, name='login'),
+    path('logout/', views.do_logout, name='logout'),
 ]

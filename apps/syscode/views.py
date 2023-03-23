@@ -10,7 +10,11 @@ def wordbook_add(request):
     if request.method == 'POST':
         form = WordBookForm(request.POST)
         if form.is_valid():
-            form.save()
+            wordbook = form.save(commit=False)
+            user = request.user
+            if user:
+                wordbook.created_by = user.id
+            wordbook.save()
             return redirect(reverse('syscode:wordbook_add'))
     else:
         form = WordBookForm()
@@ -22,6 +26,9 @@ def wordbook_edit(request, id):
         if form.is_valid():
             wordbook = form.save(commit=False)
             wordbook.updated_on = timezone.now()
+            user = request.user
+            if user:
+                wordbook.updated_by = user.id
             wordbook.save()
             return redirect(reverse('syscode:wordbook_edit', args=(id,)))
     else:

@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect, reverse
 from .models import WordBook, WordEnum
 from .forms import WordBookForm, WordEnumForm
 from django.utils import timezone
-
+from django.contrib.auth.decorators import login_required
+@login_required
 def wordbook_index(request):
     books = WordBook.objects.all()
     return render(request, 'wordbook/index.html', context=dict(books=books))
+@login_required
 def wordbook_add(request):
     if request.method == 'POST':
         form = WordBookForm(request.POST)
@@ -19,6 +21,7 @@ def wordbook_add(request):
     else:
         form = WordBookForm()
     return render(request, 'wordbook/edit.html', context=dict(form=form, title='新增字典'))
+@login_required
 def wordbook_edit(request, id):
     wordbook = WordBook.objects.get(pk=id)
     if request.method == 'POST':
@@ -34,6 +37,7 @@ def wordbook_edit(request, id):
     else:
         form = WordBookForm(instance=wordbook)
     return render(request, 'wordbook/edit.html', context=dict(form=form, title='编辑字典'))
+@login_required
 def wordenum_add(request, book_id):
     wordbook = WordBook.objects.get(pk=book_id)
     enums = wordbook.wordenum_set.order_by('code').all()
@@ -47,7 +51,7 @@ def wordenum_add(request, book_id):
     else:
         form = WordEnumForm()
     return render(request, 'wordbook/enums.html', context=dict(enums=enums, form=form, wordbook=wordbook))
-
+@login_required
 def wordenum_edit(request, book_id, enum_id):
     wordbook = WordBook.objects.get(pk=book_id)
     enums = wordbook.wordenum_set.order_by('code').all()

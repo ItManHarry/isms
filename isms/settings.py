@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os, sys
+from django.urls import path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # 将Apps放到同一目录下
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+# 系统登录地址,配置后在login_required拦截后会自动跳转至对应的登录页面
+LOGIN_URL = '/sys_sign/login/'
 
 
 # Quick-start development settings - unsuitable for production

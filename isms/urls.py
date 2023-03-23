@@ -21,4 +21,5 @@ urlpatterns = [
     path('syscode/', include('syscode.urls')),
     path('view_gc/', include('view_gc.urls')),
     path('view_fcv/', include('view_fcv.urls')),
+    path('sys_sign/', include('sys_sign.urls')),
 ]

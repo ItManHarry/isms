@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{%block title%}系统登录{%endblock%}
+{%block header%}&nbsp;{%endblock%}
+{%block content%}
+<div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+        <form>
+            <h1 class="h3 mb-3 fw-normal">Please sign in{{request.path}}</h1>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="username" placeholder="User name ...">
+              <label for="username">User Name</label>
+            </div><br>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="password" placeholder="Password ...">
+              <label for="password">Password</label>
+            </div><br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

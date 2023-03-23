@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'syscode.apps.SyscodeConfig',
     'view_gc.apps.ViewGcConfig',
     'view_fcv.apps.ViewFcvConfig',
+    'sys_sign.apps.SysSignConfig',
 ]
 
 MIDDLEWARE = [

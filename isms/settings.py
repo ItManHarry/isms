@@ -137,6 +137,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# 邮箱配置
+EMAIL_HOST = 'relay.hyundai-di.com'
+DEFAULT_FROM_EMAIL = 'guoqian.cheng@hyundai-di.com'
 '''
 超级管理员
 账号：admin

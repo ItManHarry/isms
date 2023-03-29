@@ -24,4 +24,5 @@ def send_mail_message():
         cc=['guoqian.cheng@hyundai-di.com'],
     )
     email.content_subtype = 'html'
+    email.attach_file('d:/data.xls')
     email.send()

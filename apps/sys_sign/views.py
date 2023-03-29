@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
-from mail_tool import do_send_mail
+from mail_tool import do_send_mail, send_mail_message
 def do_login(request):
     login_message = ''
     if request.method == 'POST':
@@ -11,7 +11,9 @@ def do_login(request):
         if user:
             login(request, user)
             print('Authenticate succeeded!!!')
-            do_send_mail()
+            s = do_send_mail()
+            print('Send mail result is : ', s)
+            send_mail_message()
             return redirect(reverse('syscode:wordbook_index'))
         else:
             print('Authenticate failed!!!')

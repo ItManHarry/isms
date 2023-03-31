@@ -5,7 +5,7 @@ from django.utils import timezone
 class BaseModel(models.Model):
     class Meta:
         abstract = True
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)     # ID
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)                     # ID
     active = models.BooleanField(default=True)                                      # 是否可用(默认可用)
     created_by = models.CharField(max_length=32, null=True)                         # 创建人
     created_on = models.DateTimeField(default=timezone.now, editable=False)         # 创建时间(UTC时间)

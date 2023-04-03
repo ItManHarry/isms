@@ -36,6 +36,7 @@ def wordbook_edit(request, id):
             return redirect(reverse('syscode:wordbook_edit', args=(id,)))
     else:
         form = WordBookForm(instance=wordbook)
+        # print('Code is {} name is {}'.format(form.code, form.name))
     return render(request, 'wordbook/edit.html', context=dict(form=form, title='编辑字典'))
 @login_required
 def wordenum_add(request, book_id):

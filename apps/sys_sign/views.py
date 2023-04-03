@@ -11,9 +11,9 @@ def do_login(request):
         if user:
             login(request, user)
             print('Authenticate succeeded!!!')
-            s = do_send_mail()
-            print('Send mail result is : ', s)
-            send_mail_message()
+            # s = do_send_mail()
+            # print('Send mail result is : ', s)
+            # send_mail_message()
             return redirect(reverse('syscode:wordbook_index'))
         else:
             print('Authenticate failed!!!')

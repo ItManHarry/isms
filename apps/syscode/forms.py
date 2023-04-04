@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.db.models import Q
 from django import forms
 from .models import WordBook, WordEnum
 class WordBookForm(ModelForm):
@@ -17,11 +18,20 @@ class WordBookForm(ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         id = cleaned_data['id']
-        work_book = WordBook.objects.filter(id=id)
+        code = cleaned_data['code']
+        code_exist = False      # 字典代码是否存在
+        try:
+            work_book = WordBook.objects.get(pk=id)
+        except:
+            work_book = None
         if work_book:
-            print('Edit....................')
+            if WordBook.objects.filter(~Q(id=id) & Q(code=code.upper())):
+                code_exist = True
         else:
-            print('Add.....................')
+            if WordBook.objects.filter(code=code.upper()):
+                code_exist = True
+        if code_exist:
+            self.add_error('code', '字典代码已存在!')
 class WordEnumForm(ModelForm):
     class Meta:
         model = WordEnum

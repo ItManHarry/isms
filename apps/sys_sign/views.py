@@ -13,7 +13,7 @@ def do_login(request):
             print('Authenticate succeeded!!!')
             # s = do_send_mail()
             # print('Send mail result is : ', s)
-            # send_mail_message()
+            send_mail_message()
             return redirect(reverse('syscode:wordbook_index'))
         else:
             print('Authenticate failed!!!')

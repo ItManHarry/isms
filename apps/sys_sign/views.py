@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
-from mail_tool import do_send_mail, send_mail_message
+from mail_tool import do_send_mail, send_mail_message, send_mail
+from syscode.models import WordBook
 def do_login(request):
     login_message = ''
     if request.method == 'POST':
@@ -13,7 +14,14 @@ def do_login(request):
             print('Authenticate succeeded!!!')
             # s = do_send_mail()
             # print('Send mail result is : ', s)
-            send_mail_message()
+            wordbooks = WordBook.objects.all().order_by('-name')
+            context = {'wordbooks': wordbooks}
+            # send_mail_message(context)
+            send_mail('Send mail by Thread',
+                      ['guoqian.cheng@hyundai-di.com'],
+                      'mails/test.html', context,
+                      ['guoqian.cheng@hyundai-di.com'],
+                      'Email text body.', 'd:/data.xls')
             return redirect(reverse('syscode:wordbook_index'))
         else:
             print('Authenticate failed!!!')

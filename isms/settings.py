@@ -140,6 +140,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 邮箱配置
 EMAIL_HOST = 'relay.hyundai-di.com'
 DEFAULT_FROM_EMAIL = 'guoqian.cheng@hyundai-di.com'
+# 配置Log
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'D:/Development/Python/logs.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 '''
 超级管理员
 账号：admin

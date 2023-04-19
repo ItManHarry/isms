@@ -4,9 +4,19 @@ from mail_tool import do_send_mail, send_mail_message, send_mail
 from syscode.models import WordBook
 def do_login(request):
     login_message = ''
+    try:
+        next = request.GET['next']
+    except:
+        next = ''
+    print('Next page is : ', next)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        next = request.POST['next']
+        if next:
+            print('Next to ', next)
+        else:
+            print('No next ...')
         print('User name : {}, password {}.'.format(username, password))
         user = authenticate(request, username=username, password=password)
         if user:
@@ -17,16 +27,18 @@ def do_login(request):
             wordbooks = WordBook.objects.all().order_by('-name')
             context = {'wordbooks': wordbooks}
             # send_mail_message(context)
-            send_mail('Send mail by Thread',
-                      ['guoqian.cheng@hyundai-di.com'],
-                      'mails/test.html', context,
-                      ['guoqian.cheng@hyundai-di.com'],
-                      'Email text body.', 'd:/data.xls')
+            # send_mail('Send mail by Thread',
+            #           ['guoqian.cheng@hyundai-di.com'],
+            #           'mails/test.html', context,
+            #           ['guoqian.cheng@hyundai-di.com'],
+            #           'Email text body.', 'd:/data.xls')
+            if next:
+                return redirect(next)
             return redirect(reverse('syscode:wordbook_index'))
         else:
             print('Authenticate failed!!!')
             login_message = 'User name or password is not correct!'
-    return render(request, 'sys_sign/login.html', context=dict(login_message=login_message))
+    return render(request, 'sys_sign/login.html', context=dict(login_message=login_message, next=next))
 def do_logout(request):
     logout(request)
     return redirect(reverse('sys_sign:login'))

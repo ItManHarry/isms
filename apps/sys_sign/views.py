@@ -8,16 +8,16 @@ def do_login(request):
         next = request.GET['next']
     except:
         next = ''
-    print('Next page is : ', next)
+    # print('Next page is : ', next)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         next = request.POST['next']
-        if next:
-            print('Next to ', next)
-        else:
-            print('No next ...')
-        print('User name : {}, password {}.'.format(username, password))
+        # if next:
+        #     print('Next to ', next)
+        # else:
+        #     print('No next ...')
+        # print('User name : {}, password {}.'.format(username, password))
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)

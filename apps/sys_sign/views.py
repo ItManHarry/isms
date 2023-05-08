@@ -22,7 +22,7 @@ def do_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            login_log = SysLoginLog(user=user)
+            login_log = SysLoginLog(user=user, content='系统登录-'+username)
             login_log.save()
             print('Authenticate succeeded!!!')
             # s = do_send_mail()

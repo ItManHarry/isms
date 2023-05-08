@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from mail_tool import do_send_mail, send_mail_message, send_mail
 from syscode.models import WordBook
+from .models import SysLoginLog
 def do_login(request):
     login_message = ''
     try:
@@ -21,6 +22,8 @@ def do_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+            login_log = SysLoginLog(user=user)
+            login_log.save()
             print('Authenticate succeeded!!!')
             # s = do_send_mail()
             # print('Send mail result is : ', s)

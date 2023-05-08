@@ -3,11 +3,14 @@ from .models import WordBook, WordEnum
 from .forms import WordBookForm, WordEnumForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from isms.decorators import log_record
 @login_required
+# @log_record(request, '')
 def wordbook_index(request):
     books = WordBook.objects.all()
     return render(request, 'wordbook/index.html', context=dict(books=books))
 @login_required
+
 def wordbook_add(request):
     if request.method == 'POST':
         form = WordBookForm(request.POST)

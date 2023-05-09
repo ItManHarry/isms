@@ -22,6 +22,7 @@ def do_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+            request.session['username'] = username
             login_log = SysLoginLog(user=user, content='系统登录-'+username)
             login_log.save()
             print('Authenticate succeeded!!!')

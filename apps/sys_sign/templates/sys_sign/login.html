@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {%block title%}系统登录{%endblock%}
-{%block header%}&nbsp;{%endblock%}
+{%block header%}{{block.super}}{%endblock%}
 {%block content%}
 <div class="row">
     <div class="col-md-4 offset-md-4 text-center">
@@ -23,4 +23,10 @@
         </form>
     </div>
 </div>
+{%endblock%}
+{%block scripts%}
+    {{block.super}}
+    $(function(){
+        //alert('Login')
+    })
 {%endblock%}

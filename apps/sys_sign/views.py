@@ -2,7 +2,12 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from mail_tool import do_send_mail, send_mail_message, send_mail
 from syscode.models import WordBook
+from django.http import JsonResponse
 from .models import SysLoginLog
+def json_req(request):
+    return JsonResponse(
+        {'items': [1, 2, 3], 'status': 1, 'message': 'Succeeded!!!'}
+    )
 def do_login(request):
     login_message = ''
     try:

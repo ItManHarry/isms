@@ -26,7 +26,13 @@
 {%endblock%}
 {%block scripts%}
     {{block.super}}
+alert('ok')
     $(function(){
-        //alert('Login')
+        alert('{%url 'sys_sign:json'%}')
+        $.post('/sys_sign/json/', function(data){
+            alert(data.items)
+            alert(data.status)
+            alert(data.message)
+        }, 'json')
     })
 {%endblock%}
